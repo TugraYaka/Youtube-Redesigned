@@ -1,0 +1,33 @@
+# Operating system files
+.DS_Store
+
+# Environment files
+.env.local
+.env
+.env.*
+!.env.example
+!.env.*.example
+
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+build/
+coverage/
+
+# Logs and runtime files
+*.log
+logs/
+*.pid
+*.pid.lock
+
+# Uploads and local generated media
+uploads/
+*.mp4
+*.mov
+*.webm
+
+# Editor directories
+.idea/
+.vscode/

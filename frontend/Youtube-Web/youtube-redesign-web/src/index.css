@@ -1,0 +1,159 @@
+
+:root {
+    
+    --bg-primary: #ffffff;
+    --bg-secondary: #f2f2f2;
+    --bg-tertiary: #f5f5f5;
+    --bg-hover: #e5e5e5;
+    --bg-island: rgba(255, 255, 255, 0.9);
+    --bg-sidebar: rgba(255, 255, 255, 0.95);
+    --bg-mobile-nav: rgba(255, 255, 255, 0.95);
+    --bg-card: #f0f0f0;
+    --bg-dropdown: #ffffff;
+    --bg-input: #f5f5f5;
+    --bg-skeleton: #e0e0e0;
+    --bg-description: #f2f2f2;
+    --bg-autoplay: #f2f2f2;
+    --bg-toggle-off: #ccc;
+    --bg-toggle-on: #0f0f0f;
+    --bg-toggle-knob-off: #ffffff;
+    --bg-toggle-knob-on: #ffffff;
+
+    --text-primary: #0f0f0f;
+    --text-secondary: #606060;
+    --text-tertiary: #909090;
+    --text-icon: #404040;
+
+    --border-color: rgba(0, 0, 0, 0.1);
+    --border-subtle: rgba(0, 0, 0, 0.05);
+    --divider-color: rgba(0, 0, 0, 0.1);
+    --notification-border: #f0f0f0;
+
+    --shadow-island: 0 4px 30px rgba(0, 0, 0, 0.05);
+    --shadow-dropdown: 0 4px 24px rgba(0, 0, 0, 0.15);
+    --shadow-card: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+    --scrollbar-thumb: rgba(0, 0, 0, 0.1);
+    --scrollbar-thumb-hover: rgba(0, 0, 0, 0.2);
+
+    --sign-in-bg: #0f0f0f;
+    --sign-in-bg-hover: #272727;
+    --sign-in-text: #ffffff;
+
+    --subscribe-bg: #0f0f0f;
+    --subscribe-text: #ffffff;
+
+    --active-bg: #ffe3e3;
+    --active-color: #ff0000;
+    --nav-active-bg: rgba(204, 0, 0, 0.1);
+    --nav-active-color: #cc0000;
+
+    --link-color: #065fd4;
+
+    --clear-hover: rgba(0, 0, 0, 0.1);
+    --back-btn-hover: #f2f2f2;
+    --mobile-menu-bg: #f0f0f0;
+    --mobile-menu-hover: #e5e5e5;
+
+    --header-backdrop-bg: #ffffff;
+
+    --like-dislike-divider: #d0d0d0;
+
+    --dummy-img-bg: #e5e5e5;
+    --notif-item-hover: #f2f2f2;
+    --dropdown-item-hover: #f2f2f2;
+    --create-item-hover: #f2f2f2;
+    --suggestion-hover: #e5e5e5;
+
+    --channel-tab-color: #0f0f0f;
+    --channel-tab-border: #000000;
+    --channel-tab-underline: #e2e2e2;
+
+    --dark-mode-toggle-bg: #f0f0f0;
+    --dark-mode-toggle-hover: #e5e5e5;
+    --dark-mode-toggle-color: #404040;
+}
+
+[data-theme="dark"] {
+    --bg-primary: #0f0f0f;
+    --bg-secondary: #272727;
+    --bg-tertiary: #1f1f1f;
+    --bg-hover: #3f3f3f;
+    --bg-island: rgba(30, 30, 30, 0.92);
+    --bg-sidebar: rgba(22, 22, 22, 0.97);
+    --bg-mobile-nav: rgba(22, 22, 22, 0.97);
+    --bg-card: #272727;
+    --bg-dropdown: #212121;
+    --bg-input: #1a1a1a;
+    --bg-skeleton: #272727;
+    --bg-description: #272727;
+    --bg-autoplay: #272727;
+    --bg-toggle-off: #555;
+    --bg-toggle-on: #ffffff;
+    --bg-toggle-knob-off: #ffffff;
+    --bg-toggle-knob-on: #0f0f0f;
+
+    --text-primary: #f1f1f1;
+    --text-secondary: #aaaaaa;
+    --text-tertiary: #717171;
+    --text-icon: #e0e0e0;
+
+    --border-color: rgba(255, 255, 255, 0.1);
+    --border-subtle: rgba(255, 255, 255, 0.06);
+    --divider-color: rgba(255, 255, 255, 0.1);
+    --notification-border: #333333;
+
+    --shadow-island: 0 4px 30px rgba(0, 0, 0, 0.4);
+    --shadow-dropdown: 0 4px 24px rgba(0, 0, 0, 0.5);
+    --shadow-card: 0 4px 12px rgba(0, 0, 0, 0.4);
+
+    --scrollbar-thumb: rgba(255, 255, 255, 0.15);
+    --scrollbar-thumb-hover: rgba(255, 255, 255, 0.25);
+
+    --sign-in-bg: #f1f1f1;
+    --sign-in-bg-hover: #d9d9d9;
+    --sign-in-text: #0f0f0f;
+
+    --subscribe-bg: #f1f1f1;
+    --subscribe-text: #0f0f0f;
+
+    --active-bg: rgba(255, 0, 0, 0.2);
+    --active-color: #ff4444;
+    --nav-active-bg: rgba(204, 0, 0, 0.2);
+    --nav-active-color: #ff4444;
+
+    --link-color: #3ea6ff;
+
+    --clear-hover: rgba(255, 255, 255, 0.1);
+    --back-btn-hover: #272727;
+    --mobile-menu-bg: #272727;
+    --mobile-menu-hover: #3f3f3f;
+
+    --header-backdrop-bg: #0f0f0f;
+
+    --like-dislike-divider: #555555;
+
+    --dummy-img-bg: #3f3f3f;
+    --notif-item-hover: #272727;
+    --dropdown-item-hover: #272727;
+    --create-item-hover: #272727;
+    --suggestion-hover: #3f3f3f;
+
+    --channel-tab-color: #f1f1f1;
+    --channel-tab-border: #f1f1f1;
+    --channel-tab-underline: #3f3f3f;
+
+    --dark-mode-toggle-bg: #272727;
+    --dark-mode-toggle-hover: #3f3f3f;
+    --dark-mode-toggle-color: #e0e0e0;
+}
+
+
+body {
+    font-family: 'Roboto', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}

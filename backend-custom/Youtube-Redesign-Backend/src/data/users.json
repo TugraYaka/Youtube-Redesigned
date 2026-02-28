@@ -1,0 +1,34 @@
+[
+  {
+    "id": "demo-user-1",
+    "googleId": "demo-google-id-1",
+    "displayName": "Demo User One",
+    "emails": [
+      {
+        "value": "demo.user.one@example.com",
+        "verified": false
+      }
+    ],
+    "photos": [
+      {
+        "value": "https://example.com/avatar-demo-1.png"
+      }
+    ]
+  },
+  {
+    "id": "demo-user-2",
+    "googleId": "demo-google-id-2",
+    "displayName": "Demo User Two",
+    "emails": [
+      {
+        "value": "demo.user.two@example.com",
+        "verified": false
+      }
+    ],
+    "photos": [
+      {
+        "value": "https://example.com/avatar-demo-2.png"
+      }
+    ]
+  }
+]

@@ -1,0 +1,11 @@
+Tamir edilmesi gereken yerler:
+
+Frontend: 
+
+WatchPage
+
+
+
+
+
+ShortsPage

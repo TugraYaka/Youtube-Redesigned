@@ -1,0 +1,57 @@
+.skeleton-shorts-card {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.skeleton-shorts-thumbnail {
+    width: 100%;
+    aspect-ratio: 9 / 13.5;
+    background: var(--bg-skeleton);
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+}
+
+.skeleton-shorts-title {
+    width: 90%;
+    height: 16px;
+    background: var(--bg-skeleton);
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+    margin-top: 4px;
+}
+
+.skeleton-shorts-views {
+    width: 60%;
+    height: 14px;
+    background: var(--bg-skeleton);
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+}
+
+
+.skeleton-shorts-thumbnail::after,
+.skeleton-shorts-title::after,
+.skeleton-shorts-views::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    transform: translateX(-100%);
+    background: linear-gradient(90deg, transparent, var(--bg-hover), transparent);
+    animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+    100% {
+        transform: translateX(100%);
+    }
+}

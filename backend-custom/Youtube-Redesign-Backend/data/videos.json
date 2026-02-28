@@ -1,0 +1,17 @@
+{
+  "videos": [
+    {
+      "id": "1769533694735",
+      "title": "9722333-uhd_3840_2160_25fps",
+      "thumbnail": "http://localhost:5001/uploads/videos/thumbnail-1769533693176.png",
+      "videoUrl": "http://localhost:5001/uploads/videos/video-1769533693135-564079342.mp4",
+      "channel": "Demo Channel",
+      "avatar": "https://example.com/avatar-demo-channel.png",
+      "views": "0 views",
+      "time": "Just now",
+      "duration": "0:00",
+      "createdAt": 1769533694735
+    }
+  ],
+  "shorts": []
+}

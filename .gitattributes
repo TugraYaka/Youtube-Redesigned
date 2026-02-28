@@ -1,0 +1,5 @@
+* text=auto eol=lf
+
+# Keep lock files text for clean diffs
+*.lock text
+package-lock.json text

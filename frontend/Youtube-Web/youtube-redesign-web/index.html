@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem('darkMode');
+        var isDark = saved ? JSON.parse(saved) : false;
+        var theme = isDark ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', theme);
+        document.documentElement.style.backgroundColor = isDark ? '#0f0f0f' : '#ffffff';
+      } catch (e) {
+        document.documentElement.setAttribute('data-theme', 'light');
+        document.documentElement.style.backgroundColor = '#ffffff';
+      }
+    })();
+  </script>
+  <title>youtube-redesign-web</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+</body>
+
+</html>
