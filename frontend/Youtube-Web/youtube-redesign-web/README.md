@@ -9,8 +9,12 @@ React + Vite frontend for the YouTube redesign project.
 
 ## Setup
 
+**Copy `.env.example` to `.env.local` and fill in your own credentials.** Never commit `.env.local` or use someone else's API keys.
+
 ```bash
 cp .env.example .env.local
+# Edit .env.local with your VITE_GOOGLE_CLIENT_ID and other values
+
 npm install
 npm run dev
 ```
@@ -19,13 +23,17 @@ Open `http://localhost:5173`.
 
 ## Environment Variables
 
-Set values in `.env.local`.
+Set values in `.env.local`. Create it by copying `.env.example`:
+
+```bash
+cp .env.example .env.local
+```
 
 ### Core
 
 - `VITE_BACKEND_MODE`: `custom`, `firebase`, or `supabase`
 - `VITE_BACKEND_URL`: backend URL (default `http://localhost:5001`)
-- `VITE_GOOGLE_CLIENT_ID`: Google OAuth client id
+- `VITE_GOOGLE_CLIENT_ID`: Google OAuth client id (must match backend project)
 
 ### Firebase Mode
 

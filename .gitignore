@@ -27,6 +27,8 @@ uploads/
 *.mp4
 *.mov
 *.webm
+# Allow demo video required for build (WatchPage, ShortsPage)
+!frontend/Youtube-Web/youtube-redesign-web/src/assets/DummyVideo.mp4
 
 # Editor directories
 .idea/

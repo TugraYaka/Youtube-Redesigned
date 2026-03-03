@@ -1,45 +1,51 @@
-# Firebase Kurulum Şablonları
+# Firebase Setup Templates
 
-Bu klasör, projeyi mevcut *Custom Backend (Express+Postgres vb.)* yerine veya ona ek olarak **Firebase** hizmetleriyle (kimlik doğrulama, veritabanı, resim/video depolama) bağlamak isteyenler için rehber dosyalar ve şablonlar içerir. 
+This folder contains guide files and templates for connecting the project to **Firebase** services (authentication, database, image/video storage) instead of or in addition to the Custom Backend (Express + Postgres).
 
-Eğer Firebase kullanmayacaksanız bu klasörü tamamen yok sayabilirsiniz.
+If you are not using Firebase, you can ignore this folder.
 
-## Dosyalar
+## Before You Start
+
+**Copy `.env.example` to `.env` (or `.env.local`)** and fill in your own Firebase credentials. Never commit `.env` or use someone else's keys.
+
+## Files
 
 1. **`firebase-config.js`**
-   - **Nerede Kullanılır?**: Frontend (Web/Vite/React) uygulamasında kullanılır.
-   - **Ne İşe Yarar?**: Kullanıcının web tarafında Firebase ile iletişim kurmasını sağlar. Doğrudan tarayıcıdan veri çekmek veya oturum açmak için kullanılır.
+   - **Where used?** Frontend (Web/Vite/React) app.
+   - **Purpose:** Lets the client communicate with Firebase from the browser (auth, data, storage).
 
 2. **`firebase-admin.js`**
-   - **Nerede Kullanılır?**: Backend (Node.js/Express) sunucusunda kullanılır.
-   - **Ne İşe Yarar?**: Admin yetkilendirmesiyle (Service Account kullanarak) Firebase hizmetlerine sınırsız erişim sağlar. Güvenli işlemler, kullanıcı yönetimi (Admin SDK) gibi işlemlerde kullanılır.
+   - **Where used?** Backend (Node.js/Express) server.
+   - **Purpose:** Admin access to Firebase via Service Account for secure operations, user management (Admin SDK), etc.
 
-## Nasıl Kurulur?
+## How to Set Up
 
-### A. Frontend İçin (Web Sürümü)
-1. Firebase Konsolu (https://console.firebase.google.com/) üzerinden bir proje oluşturun.
-2. Web projesi ekleyin ve verdiği API anahtarlarını kopyalayın.
-3. Frontend projenizin (Tugra'nın YouTube Web'i) `.env` (veya `.env.local`) dosyasına şunları ekleyin:
+### A. Frontend (Web)
+
+1. Create a project at [Firebase Console](https://console.firebase.google.com/).
+2. Add a Web app and copy the API keys.
+3. In the frontend project, copy `.env.example` to `.env.local` and add:
    ```env
-   VITE_FIREBASE_API_KEY="senin_api_anahtarin"
-   VITE_FIREBASE_AUTH_DOMAIN="senin_projen.firebaseapp.com"
-   VITE_FIREBASE_PROJECT_ID="senin_projen"
-   VITE_FIREBASE_STORAGE_BUCKET="senin_projen.appspot.com"
-   VITE_FIREBASE_MESSAGING_SENDER_ID="mesajlasma_id_numaran"
-   VITE_FIREBASE_APP_ID="uygulama_id_numaran"
+   VITE_FIREBASE_API_KEY="your_api_key"
+   VITE_FIREBASE_AUTH_DOMAIN="your_project.firebaseapp.com"
+   VITE_FIREBASE_PROJECT_ID="your_project"
+   VITE_FIREBASE_STORAGE_BUCKET="your_project.appspot.com"
+   VITE_FIREBASE_MESSAGING_SENDER_ID="your_messaging_id"
+   VITE_FIREBASE_APP_ID="your_app_id"
    ```
-4. Uygulamanızda `npm install firebase` komutunu çalıştırın.
-5. Bu klasördeki `firebase-config.js` içeriğini kendi web projenizin içine taşıyın ve kullanmaya başlayın.
+4. Run `npm install firebase` in the frontend project.
+5. Copy the contents of `firebase-config.js` from this folder into your web project.
 
-### B. Backend İçin (Express Sunucusu)
-1. Firebase Konsolunda *Project Settings (Proje Ayarları)* > *Service Accounts (Hizmet Hesapları)* sekmesine gidin.
-2. **"Generate New Private Key"** diyerek `.json` formatında admin bilgilerini indirin.
-3. Verilen hassas bilgileri Backend projenizin `.env` dosyasına ekleyin:
+### B. Backend (Express Server)
+
+1. In Firebase Console: **Project Settings** > **Service Accounts**.
+2. Click **Generate New Private Key** to download the `.json` admin credentials.
+3. Copy `.env.example` to `.env` in the backend project and add:
    ```env
-   FIREBASE_PROJECT_ID="senin_projen"
-   FIREBASE_CLIENT_EMAIL="firebase-adminsdk-xxxxx@senin_projen.iam.gserviceaccount.com"
-   # Diğer tırnakları değil sadece bu çift tırnakları ve satır arası \n içeren hallerini kopyalayın
-   FIREBASE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\nSeninGizliAnahtarin\n-----END PRIVATE KEY-----\n"
+   FIREBASE_PROJECT_ID="your_project"
+   FIREBASE_CLIENT_EMAIL="firebase-adminsdk-xxxxx@your_project.iam.gserviceaccount.com"
+   FIREBASE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\nYourPrivateKeyHere\n-----END PRIVATE KEY-----\n"
    ```
-4. Backend projenizde `npm install firebase-admin` komutunu çalıştırın.
-5. Bu klasördeki `firebase-admin.js` içeriğini backend kodunuz içerisine taşıyıp veritabanını dilediğiniz gibi kullanın.
+   Use the exact format from the JSON; preserve `\n` for line breaks.
+4. Run `npm install firebase-admin` in the backend project.
+5. Copy `firebase-admin.js` into your backend code.

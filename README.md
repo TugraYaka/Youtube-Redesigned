@@ -1,14 +1,14 @@
 # YouTube Redesign
 
-Bu repo, YouTube benzeri bir arayüz ve çoklu backend stratejisi içeren full-stack bir projedir.
+This repo is a full-stack project with a YouTube-like interface and multiple backend strategies.
 
 - Frontend: React + Vite
-- Backend (önerilen başlangıç): Node.js + Express (`custom`)
-- Alternatif şablonlar: Firebase ve Supabase
+- Backend (recommended start): Node.js + Express (`custom`)
+- Alternative templates: Firebase and Supabase
 
-Bu README, projeyi ilk kez kuracak biri için en kolay yolu anlatır.
+This README describes the easiest way to set up the project for the first time.
 
-## 1) Proje Yapısı
+## 1) Project Structure
 
 ```text
 Youtube-redesign/
@@ -16,19 +16,19 @@ Youtube-redesign/
 │   └── Youtube-Web/youtube-redesign-web/   # React + Vite frontend
 ├── backend-custom/
 │   └── Youtube-Redesign-Backend/            # Node.js + Express backend
-├── backend-firebase/                        # Firebase entegrasyon şablonları
-├── backend-supabase/                        # Supabase entegrasyon şablonları
-├── AI-ML/                                   # Öneri sistemleri (JS)
+├── backend-firebase/                        # Firebase integration templates
+├── backend-supabase/                        # Supabase integration templates
+├── AI-ML/                                   # Recommendation systems (JS)
 └── README.md
 ```
 
-## 2) Gereksinimler
+## 2) Requirements
 
 - Node.js `20+`
 - npm `10+`
 - Git
 
-Kontrol:
+Check versions:
 
 ```bash
 node -v
@@ -36,97 +36,100 @@ npm -v
 git --version
 ```
 
-## 3) En Kolay Kurulum (Custom Backend ile)
+## 3) Quick Setup (Custom Backend)
 
-Bu proje için başlangıçta `custom` modunu kullanman en pratik yöntemdir.
+Using `custom` mode is the most practical way to get started.
 
-### Adım 1: Backend'i çalıştır
+### Step 1: Run the Backend
+
+**Important:** Copy `.env.example` to `.env` and fill in your own credentials. Never commit `.env` or use someone else's keys.
 
 ```bash
 cd backend-custom/Youtube-Redesign-Backend
 cp .env.example .env
-npm install
 ```
 
-`.env` dosyasını aç ve en az şu alanları doldur:
+Edit `.env` and fill in at least these fields with your own values:
 
 ```env
-GOOGLE_CLIENT_ID=...
-GOOGLE_CLIENT_SECRET=...
-COOKIE_KEY=uzun_ve_rastgele_bir_deger
+GOOGLE_CLIENT_ID=your_actual_google_client_id
+GOOGLE_CLIENT_SECRET=your_actual_google_client_secret
+COOKIE_KEY=a_long_random_string_here
 PORT=5001
 FRONTEND_URL=http://localhost:5173
 BACKEND_URL=http://localhost:5001
 GOOGLE_CALLBACK_URL=http://localhost:5001/auth/google/callback
 ```
 
-Notlar:
-- `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET` ve `COOKIE_KEY` boş olursa backend açılmaz.
-- Google OAuth kurulu değilse backend'i sadece ayağa kaldırmak için geçici dummy değer verebilirsin; giriş akışı çalışmaz.
+Notes:
+- Backend will not start if `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, or `COOKIE_KEY` are empty.
+- Create your own OAuth credentials in [Google Cloud Console](https://console.cloud.google.com/). Do not use placeholder values for production.
+- For local testing without Google OAuth, you can use dummy values; the login flow will not work.
 
-Backend'i başlat:
+Then install and run:
 
 ```bash
+npm install
 npm run dev
 ```
 
-Beklenen çıktı: `Server is running on port 5001`
+Expected output: `Server is running on port 5001`
 
-### Adım 2: Frontend'i çalıştır (yeni terminal)
+### Step 2: Run the Frontend (new terminal)
+
+**Important:** Copy `.env.example` to `.env.local` and add your own Google Client ID (must match the backend project).
 
 ```bash
 cd frontend/Youtube-Web/youtube-redesign-web
 cp .env.example .env.local
-npm install
 ```
 
-`.env.local` içinde başlangıç için şunları ayarla:
+Edit `.env.local` and set:
 
 ```env
 VITE_BACKEND_MODE=custom
 VITE_BACKEND_URL=http://localhost:5001
-VITE_GOOGLE_CLIENT_ID=... # backend'deki Google client id ile aynı proje olmalı
+VITE_GOOGLE_CLIENT_ID=your_actual_client_id.apps.googleusercontent.com   # Must match backend Google project
 ```
 
-Frontend'i başlat:
+Then:
 
 ```bash
+npm install
 npm run dev
 ```
 
-Tarayıcıda aç:
+Open in browser:
 
 - `http://localhost:5173`
 
-## 4) İlk Çalıştığını Nasıl Anlarsın?
+## 4) How to Verify It Works
 
-- Frontend açılıyor mu: `http://localhost:5173`
-- Backend ayakta mı: `http://localhost:5001/test` (cevap: `Backend is working!`)
-- Login butonu Google'a yönlendiriyor mu: `/auth/google`
+- Frontend loads: `http://localhost:5173`
+- Backend is up: `http://localhost:5001/test` (response: `Backend is working!`)
+- Login button redirects to Google: `/auth/google`
 
-## 5) Backend Modları (Custom / Firebase / Supabase)
+## 5) Backend Modes (Custom / Firebase / Supabase)
 
-Frontend tarafında mod seçimi:
+Frontend mode is selected via:
 
 `frontend/Youtube-Web/youtube-redesign-web/.env.local`
 
 ```env
-VITE_BACKEND_MODE=custom   # veya firebase / supabase
+VITE_BACKEND_MODE=custom   # or firebase / supabase
 ```
 
-### `custom` modu
-- Express backend gerekir (`backend-custom/...`).
-- Video yükleme, `/api/*` route'ları ve Socket.IO bu modda aktif çalışır.
+### `custom` mode
+- Requires Express backend (`backend-custom/...`).
+- Video upload, `/api/*` routes, and Socket.IO are active.
 
-### `firebase` modu
-- `VITE_FIREBASE_*` alanlarını doldur.
-- Rehber ve şablonlar: `backend-firebase/README.md`
+### `firebase` mode
+- Fill in `VITE_FIREBASE_*` variables. See `backend-firebase/README.md`.
 
-### `supabase` modu
-- `VITE_SUPABASE_URL` ve `VITE_SUPABASE_ANON_KEY` doldur.
-- Rehber ve şablonlar: `backend-supabase/README.md`
+### `supabase` mode
+- Fill in `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY`. See `backend-supabase/README.md`.
 
-## 6) Sık Kullanılan Komutlar
+## 6) Common Commands
 
 ### Frontend
 
@@ -147,29 +150,28 @@ npm run build
 npm run start
 ```
 
-## 7) Yaygın Hatalar ve Çözüm
+## 7) Troubleshooting
 
-1. `Missing required environment variable` hatası
-- Backend `.env` içinde gerekli alanlardan biri boştur.
+1. **`Missing required environment variable`**
+   - One of the required fields in backend `.env` is empty. Copy `.env.example` to `.env` and fill in all required values.
 
-2. Frontend login'de hata veriyor
-- `VITE_BACKEND_MODE` ile verdiğin env'ler uyumsuzdur (ör: mode `supabase` ama Supabase env yok).
+2. **Frontend login errors**
+   - `VITE_BACKEND_MODE` does not match your env setup (e.g. mode is `supabase` but Supabase env vars are missing).
 
-3. CORS / redirect sorunu
-- Backend `FRONTEND_URL` ve frontend `VITE_BACKEND_URL` değerleri local portlarla birebir eşleşmeli.
+3. **CORS / redirect issues**
+   - Ensure backend `FRONTEND_URL` and frontend `VITE_BACKEND_URL` match your local ports.
 
-4. `npm` kurulum hataları
-- Node sürümünü `20+` yap.
-- Gerekirse `node_modules` silip tekrar `npm install` çalıştır.
+4. **npm install failures**
+   - Use Node.js `20+`. Try removing `node_modules` and running `npm install` again.
 
-## 8) Ek Dokümanlar
+## 8) Additional Docs
 
-- Frontend workspace: `frontend/README.md`
-- Custom backend workspace: `backend-custom/README.md`
-- Katkı rehberi: `CONTRIBUTING.md`
-- Güvenlik: `SECURITY.md`
-- Davranış kuralları: `CODE_OF_CONDUCT.md`
+- Frontend: `frontend/README.md`
+- Custom backend: `backend-custom/README.md`
+- Contributing: `CONTRIBUTING.md`
+- Security: `SECURITY.md`
+- Code of conduct: `CODE_OF_CONDUCT.md`
 
-## Lisans
+## License
 
-MIT. Ayrıntı: `LICENSE`
+MIT. See `LICENSE` for details.

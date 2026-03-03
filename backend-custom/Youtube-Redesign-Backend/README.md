@@ -9,8 +9,12 @@ Node.js + Express backend for OAuth, video endpoints, and socket events.
 
 ## Setup
 
+**Copy `.env.example` to `.env` and fill in your own credentials.** Never commit `.env` or use someone else's API keys.
+
 ```bash
 cp .env.example .env
+# Edit .env with your GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, and COOKIE_KEY
+
 npm install
 npm run dev
 ```
@@ -19,14 +23,14 @@ Server defaults to `http://localhost:5001`.
 
 ## Environment Variables
 
-Required:
+Create `.env` from `.env.example` and set:
 
-- `GOOGLE_CLIENT_ID`
-- `GOOGLE_CLIENT_SECRET`
-- `COOKIE_KEY`
+**Required:**
+- `GOOGLE_CLIENT_ID` — from [Google Cloud Console](https://console.cloud.google.com/) OAuth credentials
+- `GOOGLE_CLIENT_SECRET` — from the same OAuth credentials
+- `COOKIE_KEY` — a long random string for session encryption
 
-Optional:
-
+**Optional:**
 - `PORT` (default `5001`)
 - `FRONTEND_URL` (default `http://localhost:5173`)
 - `BACKEND_URL` (default built from `PORT`)

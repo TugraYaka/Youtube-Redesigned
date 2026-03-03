@@ -1,38 +1,44 @@
-# Supabase Kurulum Şablonları
+# Supabase Setup Templates
 
-Bu klasör, projeyi mevcut *Custom Backend (Express+Postgres vb.)* yerine Postgres tabanlı, Firebase alternatifi olan **Supabase** ile geliştirmek isteyenler için rehber dosyalar ve şablonlar içerir. 
+This folder contains guide files and templates for building with **Supabase** (Postgres-based, Firebase alternative) instead of or in addition to the Custom Backend (Express + Postgres).
 
-Eğer Supabase kullanmayacaksanız bu klasörü tamamen yok sayabilirsiniz.
+If you are not using Supabase, you can ignore this folder.
 
-## Dosyalar
+## Before You Start
+
+**Copy `.env.example` to `.env`** and fill in your own Supabase credentials. Never commit `.env` or use someone else's keys.
+
+## Files
 
 1. **`supabase-config.js`**
-   - **Nerede Kullanılır?**: Frontend (Web/Vite/React) uygulamasında.
-   - **Ne İşe Yarar?**: Kullanıcının web tarafında doğrudan Supabase servislerine (Auth, Database, Storage) "anonim" yetkilerle erişmesini sağlar.
+   - **Where used?** Frontend (Web/Vite/React) app.
+   - **Purpose:** Lets the client access Supabase services (Auth, Database, Storage) with "anon" (anonymous/public) permissions.
 
 2. **`supabase-admin.js`**
-   - **Nerede Kullanılır?**: Backend (Node.js/Express) sunucusunda.
-   - **Ne İşe Yarar?**: Service Role Key kullanarak veritabanına ve Auth sistemine *tam kısıtlamasız yönetici (admin)* erişimi sağlar. Özel güvenlik kurallarını bypass ederek çalışır.
+   - **Where used?** Backend (Node.js/Express) server.
+   - **Purpose:** Full admin access via Service Role Key to the database and Auth, bypassing security rules when needed.
 
-## Nasıl Kurulur?
+## How to Set Up
 
-### A. Frontend İçin (Web Sürümü)
-1. Supabase (https://supabase.com/) üzerinden bir proje (Organization & Project) oluşturun.
-2. Dashboard > Settings > API bölümünden `Project URL` ve `anon` `public` anahtarlarını kopyalayın.
-3. Frontend projenizin `.env` dosyasına şunları ekleyin:
+### A. Frontend (Web)
+
+1. Create a project at [Supabase](https://supabase.com/) (Organization & Project).
+2. Go to **Dashboard > Settings > API** and copy `Project URL` and the `anon` public key.
+3. Copy `.env.example` to `.env.local` in the frontend project and add:
    ```env
    VITE_SUPABASE_URL="https://xxxxx.supabase.co"
-   VITE_SUPABASE_ANON_KEY="senin_anon_public_key_bilgin"
+   VITE_SUPABASE_ANON_KEY="your_anon_public_key"
    ```
-4. Uygulamanızda `npm install @supabase/supabase-js` komutunu çalıştırın.
-5. Bu klasördeki `supabase-config.js` içeriğini kendi projenizin içine (`src/supabase/` veya benzeri bir yere) taşıyıp kullanmaya başlayın.
+4. Run `npm install @supabase/supabase-js` in the frontend project.
+5. Copy `supabase-config.js` from this folder into your project (e.g. `src/supabase/`).
 
-### B. Backend İçin (Express Sunucusu)
-1. Supabase Dashboard > Settings > API bölümünden `service_role` `secret` anahtarını kopyalayın.
-2. Backend projenizin `.env` dosyasına şunları ekleyin:
+### B. Backend (Express Server)
+
+1. In Supabase Dashboard > **Settings > API**, copy the `service_role` secret key.
+2. Copy `.env.example` to `.env` in the backend project and add:
    ```env
    SUPABASE_URL="https://xxxxx.supabase.co"
-   SUPABASE_SERVICE_ROLE_KEY="senin_service_role_secret_key_bilgin"
+   SUPABASE_SERVICE_ROLE_KEY="your_service_role_secret_key"
    ```
-3. Backend projenizde `npm install @supabase/supabase-js` komutunu çalıştırın.
-4. Bu klasördeki `supabase-admin.js` içeriğini projeninizin bir config dosyasına kopyalayıp admin yetkisi gereken yerlerde içeri aktarın (import/require).
+3. Run `npm install @supabase/supabase-js` in the backend project.
+4. Copy `supabase-admin.js` into your backend config and import it where admin access is needed.
